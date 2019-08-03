@@ -10,6 +10,7 @@ TagManager:
   - Homing
   - Rocket
   - Planet1
+  - Planet
   layers:
   - Default
   - TransparentFX

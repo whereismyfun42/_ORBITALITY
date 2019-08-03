@@ -12,9 +12,12 @@ public class Shooter : MonoBehaviour {
     public GameObject projectile3;
     public List<GameObject> Rockets = new List<GameObject>();
     public float power = 10.0f;
+    public float MainFireRate = 15f;
     public float power2 = 10.0f;
     public float power3 = 10.0f;
-    
+
+    private float nextTimeToFire = 0f;
+
 
     // Reference to AudioClip to play
     public AudioClip shootSFX;
@@ -25,8 +28,10 @@ public class Shooter : MonoBehaviour {
     void Update()
     {
         // Detect if fire button is pressed
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire)
         {
+
+            nextTimeToFire = Time.time + 1f / MainFireRate;
             // if projectile is specified
             if (projectile)
             {

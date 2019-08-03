@@ -707,7 +707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &105055729
 Transform:
   m_ObjectHideFlags: 0
@@ -1336,7 +1336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2226cdaf81af84490f3a25e9d2c523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfPlanets: 200
+  numberOfPlanets: 100
   maxRadius: 100
   Planets:
   - {fileID: 0}
@@ -1348,7 +1348,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 3a902a560500f374cbaee9d0c21d0e40, type: 2}
   - {fileID: 2100000, guid: f2ab07283ba4fef4bb9a44b687d295fb, type: 2}
   - {fileID: 2100000, guid: b2a2e5e1608034149a463f029f5486de, type: 2}
-  trail: {fileID: 2100000, guid: 45f707f74b703234e9763b2f110d98b6, type: 2}
+  trail: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &741398668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,7 +1399,8 @@ MonoBehaviour:
   projectile3: {fileID: 4966214566940592437, guid: a94ee8ec56f347b40a711ec502b2d207,
     type: 3}
   Rockets: []
-  power: 10
+  power: 4
+  MainFireRate: 0.5
   power2: 10
   power3: 10
   shootSFX: {fileID: 8300000, guid: fa0485063bb10354eb145b81bb308c2d, type: 3}

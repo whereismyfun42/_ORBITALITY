@@ -59,6 +59,7 @@
      <Compile Include="Assets\SCRIPTS\ECS\UFORotationSystem.cs" />
      <Compile Include="Assets\SCRIPTS\ECS\UFOSpawner.cs" />
      <Compile Include="Assets\SCRIPTS\PLAYER\Bullet.cs" />
+     <Compile Include="Assets\SCRIPTS\PLAYER\CalculateTrajectory.cs" />
      <Compile Include="Assets\SCRIPTS\PLAYER\CameraControll.cs" />
      <Compile Include="Assets\SCRIPTS\PLAYER\DestroyRocket.cs" />
      <Compile Include="Assets\SCRIPTS\PLAYER\EnemyHealth.cs" />
@@ -90,6 +91,7 @@
      <Compile Include="Assets\SCRIPTS\VFX\RigidbodyDisperseVelocity.cs" />
      <Compile Include="Assets\SCRIPTS\VFX\ScrollTexture.cs" />
      <Compile Include="Assets\SCRIPTS\VFX\ShootingStarSpawner.cs" />
+     <Compile Include="Assets\Sun.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

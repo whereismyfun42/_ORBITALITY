@@ -12,20 +12,24 @@ public class CameraControll : MonoBehaviour
     public float zoomSpeed = 5f;
     public float minY = 20f;
     public float maxY = 100f;
+    private float nextTimeToFire = 0f;
     public bool Pause = false;
+    public Rigidbody rb;
+    public GameObject cursor;
+    //public LayerMask layer;
+    private Camera cam;
     //public float MainPower = 10.0f;
-    //public float MainFireRate = 15f;
+    public float MainFireRate = 15f;
     //public float BlockPower = 10.0f;
     //public float BlockFireRate = 15f;
-   //public float PowerUpPower = 10.0f;
-   // public float PowerUpFireRate = 15f;
+    //public float PowerUpPower = 10.0f;
+    // public float PowerUpFireRate = 15f;
     //public float spreadAngleMain;
     //private float nextTimeToFire = 0f;
     public Vector2 Limit;
     public Transform Player;
     public Transform CameraCentrePoint;
     public Transform BulletSpawn;
-    public Camera kamera;
     //public GameObject MainProjectile;
     //public GameObject BlockProjectile;
     //public GameObject PowerUpProjectile;
@@ -39,18 +43,49 @@ public class CameraControll : MonoBehaviour
         instance = this;
     }
 
+    void Start()
+    {
+        cam = Camera.main;
+    }
+
     // Update is called once per frame
     void Update()
-    {
-        Ray cameraRay = kamera.ScreenPointToRay(Input.mousePosition);
+    {   
+        Ray camRay = cam.ScreenPointToRay(Input.mousePosition);
         Plane ground = new Plane(Vector3.up, Vector3.zero);
         float rayLength;
         Vector3 CameraPosition = transform.position;
+        
 
-        if (ground.Raycast(cameraRay, out rayLength))
+        /*if (Physics.Raycast(camRay, out hit, 100f, layer))
         {
-            Vector3 lookAt = cameraRay.GetPoint(rayLength);
+            cursor.SetActive(true);
+            cursor.transform.position = hit.point + Vector3.up * 0.1f;
+        }*/
+
+        if (ground.Raycast(camRay, out rayLength))
+        {
+            Vector3 lookAt = camRay.GetPoint(rayLength);
+            cursor.SetActive(true);
+            cursor.transform.position = camRay.GetPoint(rayLength) + Vector3.up * 0.1f;
             Player.transform.LookAt(new Vector3(lookAt.x, Player.transform.position.y, lookAt.z));
+
+            Vector3 Vo = CalculateVelocity(camRay.GetPoint(rayLength), BulletSpawn.position, 1f);
+
+            BulletSpawn.rotation = Quaternion.LookRotation(Vo);
+
+            if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire)
+            {
+                nextTimeToFire = Time.time + 1f / MainFireRate;
+                Rigidbody obj = Instantiate(rb, BulletSpawn.position, BulletSpawn.rotation);
+                obj.velocity = Vo;
+            }
+           
+
+        }
+        else
+        {
+            cursor.SetActive(true);
         }
 
         if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - Border)
@@ -117,8 +152,39 @@ public class CameraControll : MonoBehaviour
         transform.position = CameraPosition;
     }
 
-   
+    Vector3 CalculateVelocity(Vector3 target, Vector3 origin, float time)
+    {
+        Vector3 distance = target - origin;
+        Vector3 distanceXZ = distance;
+        distanceXZ.y = 0f;
 
-    
+        float Sy = distance.y;
+        float Sxz = distanceXZ.magnitude;
+
+        float Vxz = Sxz / time;
+        float Vy = Sy / time + 0.5f * Mathf.Abs(Physics.gravity.y) * time;
+
+        Vector3 result = distanceXZ.normalized;
+        result *= Vxz;
+        result.y = Vy;
+
+        return result;
+    }
+
+    /*void Shoot()
+    {
+        Ray camRay = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(camRay, out hit, 100f, layer))
+        {
+            cursor.SetActive(true);
+            cursor.transform.position = hit.point + Vector3.up * 0.1f;
+        }
+    }*/
+
+
+
+
 }
 

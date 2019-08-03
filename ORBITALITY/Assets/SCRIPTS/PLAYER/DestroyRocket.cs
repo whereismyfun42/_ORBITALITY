@@ -19,6 +19,7 @@ public class DestroyRocket : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Rocket"))
         {
+            //GetComponent<SphereCollider>().radius = GetComponent<SphereCollider>().radius / (3 * Time.deltaTime);
             /*other.gameObject.AddComponent<RotateAround>();
             other.gameObject.GetComponent<RotateAround>().target = this.gameObject.transform;
             other.gameObject.GetComponent<RotateAround>().speed = 50;*/

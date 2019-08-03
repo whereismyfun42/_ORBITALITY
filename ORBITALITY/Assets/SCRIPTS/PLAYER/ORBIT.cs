@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class ORBIT : MonoBehaviour
 {
+    public static ORBIT instance;
 
     public int numberOfPlanets = 500;
     public int maxRadius = 200;
     public GameObject[] Planets;
     public Material[] mats;
     public Material trail;
+    public GameObject Boom;
 
     void Awake()
     {
         Planets = new GameObject[numberOfPlanets];
+        instance = this;
     }
     // Start is called before the first frame update
     void Start()
@@ -36,9 +39,11 @@ public class ORBIT : MonoBehaviour
                             Random.Range(-10, 10),
                             Random.Range(-maxRadius, maxRadius));
             sp.transform.localScale *= Random.Range(2f, 4f);
-            sp.AddComponent<RocketAttract>();
+            //sp.AddComponent<RocketAttract>();
             sp.AddComponent<Planet>();
-            sp.AddComponent<Magnet>();
+            sp.AddComponent<Rotate>();
+            sp.GetComponent<Rotate>().speed = 50f;
+            //sp.AddComponent<Magnet>();
             sp.AddComponent<DestroyRocket>();
             /*sp.AddComponent<SphereCollider>();
             sp.GetComponent<SphereCollider>().isTrigger = true;*/

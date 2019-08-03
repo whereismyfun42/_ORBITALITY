@@ -138,7 +138,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2359640318221360398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a55ed452b2ec9c4691eb408d94db501, type: 3}
   m_Name: 
@@ -261,17 +261,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2359640318221360398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 434e75addb14a764aa20e4d2bafc3e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Explosion: {fileID: 8240696785233822633, guid: 02c47c2862599f74db1117c2d37b3372,
-    type: 3}
-  rb: {fileID: 4976831437188274707}
-  crashed: 0
-  target: {fileID: 6957384280220970962}
-  speed: 10
+  currentHitobject: {fileID: 0}
+  sphereRadius: 5
+  maxDistance: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &6092181926239889256
 GameObject:
   m_ObjectHideFlags: 0

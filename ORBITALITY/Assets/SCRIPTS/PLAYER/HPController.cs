@@ -19,7 +19,7 @@ public class HPController : MonoBehaviour
     }
     void Update()
     {
-        HealthText.text = HP.ToString();
+        HealthText.text = ((int)HP).ToString();
 
 
 

@@ -46,7 +46,7 @@ public class ORBIT : MonoBehaviour
             sp.GetComponent<SphereCollider>().isTrigger = true;
             //sp.AddComponent<ORBIT>();
             //sp.GetComponent<ORBIT>().numberOfPlanets = 0;
-            sp.tag = "Planet1";
+            sp.tag = "Planet";
             sp.GetComponent<Renderer>().material = mats[Random.Range(0, mats.Length)];
             TrailRenderer tr = sp.AddComponent<TrailRenderer>();
             tr.time = 1.0f;

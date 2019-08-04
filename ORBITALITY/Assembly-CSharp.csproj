@@ -58,6 +58,7 @@
      <Compile Include="Assets\SCRIPTS\ECS\UFORotationComponent.cs" />
      <Compile Include="Assets\SCRIPTS\ECS\UFORotationSystem.cs" />
      <Compile Include="Assets\SCRIPTS\ECS\UFOSpawner.cs" />
+     <Compile Include="Assets\SCRIPTS\PLAYER\AddForceProjectile.cs" />
      <Compile Include="Assets\SCRIPTS\PLAYER\Bullet.cs" />
      <Compile Include="Assets\SCRIPTS\PLAYER\CalculateTrajectory.cs" />
      <Compile Include="Assets\SCRIPTS\PLAYER\CameraControll.cs" />

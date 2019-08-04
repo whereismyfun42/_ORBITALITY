@@ -12,18 +12,21 @@ public class CameraControll : MonoBehaviour
     public float zoomSpeed = 5f;
     public float minY = 20f;
     public float maxY = 100f;
-    private float nextTimeToFire = 0f;
+    private float nextTimeToFireRocket = 0f;
+    private float nextTimeToFireAddForceProjectile = 0f;
+
     public bool Pause = false;
     public GameObject PauseExit;
-    public Rigidbody rb;
+    public Rigidbody Rocket;
+    public GameObject AddForceProjectile;
     public GameObject cursor;
     public AudioClip RocketSFX;
     //public LayerMask layer;
     private Camera cam;
     //public float MainPower = 10.0f;
-    public float MainFireRate = 15f;
-    //public float BlockPower = 10.0f;
-    //public float BlockFireRate = 15f;
+    public float RocketFireRate = 15f;
+    public float AddForceProjectilePower = 10.0f;
+    public float AddForceProjectileFireRate = 15f;
     //public float PowerUpPower = 10.0f;
     // public float PowerUpFireRate = 15f;
     //public float spreadAngleMain;
@@ -31,7 +34,8 @@ public class CameraControll : MonoBehaviour
     public Vector2 Limit;
     public Transform Player;
     public Transform CameraCentrePoint;
-    public Transform BulletSpawn;
+    public Transform RocketSpawn;
+    public Transform AddForceProjectileSpawn;
     //public GameObject MainProjectile;
     //public GameObject BlockProjectile;
     //public GameObject PowerUpProjectile;
@@ -70,16 +74,16 @@ public class CameraControll : MonoBehaviour
             Vector3 lookAt = camRay.GetPoint(rayLength);
             cursor.SetActive(true);
             cursor.transform.position = camRay.GetPoint(rayLength) + Vector3.up * 0.1f;
-            //Player.transform.LookAt(new Vector3(lookAt.x, Player.transform.position.y, lookAt.z));
+            Player.transform.LookAt(new Vector3(lookAt.x, Player.transform.position.y, lookAt.z));
 
-            Vector3 Vo = CalculateVelocity(camRay.GetPoint(rayLength), BulletSpawn.position, 1.5f);
+            Vector3 Vo = CalculateVelocity(camRay.GetPoint(rayLength), RocketSpawn.position, 1.5f);
 
-            BulletSpawn.rotation = Quaternion.LookRotation(Vo);
+            RocketSpawn.rotation = Quaternion.LookRotation(Vo);
 
-            if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && Pause == false)
+            if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFireRocket && Pause == false)
             {
-                nextTimeToFire = Time.time + 1f / MainFireRate;
-                Rigidbody obj = Instantiate(rb, BulletSpawn.position, BulletSpawn.rotation);
+                nextTimeToFireRocket = Time.time + 1f / RocketFireRate;
+                Rigidbody obj = Instantiate(Rocket, RocketSpawn.position, RocketSpawn.rotation);
                 obj.velocity = Vo;
                 obj.GetComponent<AudioSource>().PlayOneShot(RocketSFX);
             }
@@ -89,6 +93,17 @@ public class CameraControll : MonoBehaviour
         else
         {
             cursor.SetActive(true);
+        }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            AddForceProjectilePower += Time.deltaTime;
+        }
+        if (Input.GetButtonUp("Fire2"))
+        {
+            nextTimeToFireAddForceProjectile = Time.time + AddForceProjectileFireRate;
+            GameObject obj2 = Instantiate(AddForceProjectile, AddForceProjectileSpawn.position, AddForceProjectileSpawn.rotation) as GameObject;
+            obj2.GetComponent<Rigidbody>().AddForce(transform.up * AddForceProjectilePower);
         }
 
         if ((Input.GetKey("w") || Input.mousePosition.y >= Screen.height - Border) && Pause == false)

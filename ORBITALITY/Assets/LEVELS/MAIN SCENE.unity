@@ -526,14 +526,19 @@ MonoBehaviour:
   maxY: 120
   Pause: 0
   PauseExit: {fileID: 300781142}
-  rb: {fileID: 4976831437188274707, guid: ad9f7d327f2248d469b6ceb6abea75a9, type: 3}
+  Rocket: {fileID: 4976831437188274707, guid: ad9f7d327f2248d469b6ceb6abea75a9, type: 3}
+  AddForceProjectile: {fileID: 3323671917287769675, guid: 451e259fc20644b47985cf82ba33c04e,
+    type: 3}
   cursor: {fileID: 1210175418}
   RocketSFX: {fileID: 8300000, guid: fa0485063bb10354eb145b81bb308c2d, type: 3}
-  MainFireRate: 0.5
+  RocketFireRate: 15
+  AddForceProjectilePower: 500
+  AddForceProjectileFireRate: 2
   Limit: {x: 100, y: 100}
   Player: {fileID: 6127008510941200665}
   CameraCentrePoint: {fileID: 1230506531}
-  BulletSpawn: {fileID: 6127008510941200665}
+  RocketSpawn: {fileID: 741398669}
+  AddForceProjectileSpawn: {fileID: 583122143}
 --- !u!82 &94873649
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1443,6 +1448,45 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &583122142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 583122143}
+  - component: {fileID: 583122146}
+  m_Layer: 0
+  m_Name: AddForceProjectileSpwn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &583122143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583122142}
+  m_LocalRotation: {x: -0.3295476, y: -0, z: -0, w: 0.94413894}
+  m_LocalPosition: {x: 0.05619669, y: 1.6466829, z: 1.4050064}
+  m_LocalScale: {x: 0.56, y: 0.56, z: 1.567776}
+  m_Children: []
+  m_Father: {fileID: 6127008510941200665}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: -38.483, y: 0, z: 0}
+--- !u!33 &583122146
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583122142}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &615996252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1665,7 +1709,7 @@ GameObject:
   - component: {fileID: 741398669}
   - component: {fileID: 741398670}
   m_Layer: 0
-  m_Name: Shooter
+  m_Name: RocketShooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3625,6 +3669,7 @@ Transform:
   - {fileID: 1230506531}
   - {fileID: 741398669}
   - {fileID: 2730375738898034313}
+  - {fileID: 583122143}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

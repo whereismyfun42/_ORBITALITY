@@ -524,10 +524,14 @@ MonoBehaviour:
   zoomSpeed: 5
   minY: 20
   maxY: 120
+  height: 10
+  gravity: -18
   Pause: 0
   PauseExit: {fileID: 300781142}
   Rocket: {fileID: 4976831437188274707, guid: ad9f7d327f2248d469b6ceb6abea75a9, type: 3}
   AddForceProjectile: {fileID: 3323671917287769675, guid: 451e259fc20644b47985cf82ba33c04e,
+    type: 3}
+  TrackProjectile: {fileID: 3888645983238602598, guid: a199bdcc6964fb14381c459b02d00bb1,
     type: 3}
   cursor: {fileID: 1210175418}
   RocketSFX: {fileID: 8300000, guid: fa0485063bb10354eb145b81bb308c2d, type: 3}
@@ -539,6 +543,7 @@ MonoBehaviour:
   CameraCentrePoint: {fileID: 1230506531}
   RocketSpawn: {fileID: 741398669}
   AddForceProjectileSpawn: {fileID: 583122143}
+  target: {fileID: 0}
 --- !u!82 &94873649
 AudioSource:
   m_ObjectHideFlags: 0

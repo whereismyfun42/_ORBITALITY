@@ -19,6 +19,9 @@ public class Planet : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Attract(other.transform);
+        if (other.gameObject.CompareTag("Rocket"))
+        {
+            Attract(other.transform);
+        }
     }
 }

@@ -30,8 +30,13 @@ public class ORBIT : MonoBehaviour
         var sphereToCopy = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         Rigidbody rb = sphereToCopy.AddComponent<Rigidbody>();
         rb.useGravity = false;
+        sphereToCopy.AddComponent<Planet>();
+        sphereToCopy.AddComponent<Rotate>();
+        sphereToCopy.GetComponent<Rotate>().speed = 150f;
+        sphereToCopy.tag = "Planet";
+        sphereToCopy.AddComponent<DestroyRocket>();
 
-        for(int i = 0; i<count; i++)
+        for (int i = 0; i<count; i++)
         {
             var sp = GameObject.Instantiate(sphereToCopy);
             sp.transform.position = this.transform.position +
@@ -40,18 +45,16 @@ public class ORBIT : MonoBehaviour
                             Random.Range(-maxRadius, maxRadius));
             sp.transform.localScale *= Random.Range(2f, 4f);
             //sp.AddComponent<RocketAttract>();
-            sp.AddComponent<Planet>();
-            sp.AddComponent<Rotate>();
-            sp.GetComponent<Rotate>().speed = 150f;
+            
             //sp.AddComponent<Magnet>();
-            sp.AddComponent<DestroyRocket>();
+            
             /*sp.AddComponent<SphereCollider>();
             sp.GetComponent<SphereCollider>().isTrigger = true;*/
             sp.GetComponent<SphereCollider>().radius = 2f;
             sp.GetComponent<SphereCollider>().isTrigger = true;
             //sp.AddComponent<ORBIT>();
             //sp.GetComponent<ORBIT>().numberOfPlanets = 0;
-            sp.tag = "Planet";
+            
             sp.GetComponent<Renderer>().material = mats[Random.Range(0, mats.Length)];
             TrailRenderer tr = sp.AddComponent<TrailRenderer>();
             tr.time = 1.0f;

@@ -13,10 +13,7 @@ GameObject:
   - component: {fileID: 8557563663601471089}
   - component: {fileID: 2942699975235194145}
   - component: {fileID: 3298087111070083601}
-  - component: {fileID: 7383858005663713673}
   - component: {fileID: 2094411897733430}
-  - component: {fileID: 8110254553058726067}
-  - component: {fileID: 5482786408854562795}
   - component: {fileID: -5869099860928406974}
   m_Layer: 0
   m_Name: BluePlanet
@@ -34,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3888645983238602598}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.9561968, y: -1.7966828, z: -72.24}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -105,28 +102,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3888645983238602598}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47af3168550784e3a932e53789748764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   exitAfterSeconds: 10
   exitAnimationSeconds: 1
---- !u!114 &7383858005663713673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3888645983238602598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20a926d2dbaf347e29cb9c7dc7bf85da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreAmount: 10
-  timeAmount: 0
-  explosionPrefab: {fileID: 0}
 --- !u!114 &2094411897733430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +116,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3888645983238602598}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f42b8ec115b54b858bf87bc1cbc3892, type: 3}
   m_Name: 
@@ -142,33 +124,6 @@ MonoBehaviour:
   motionState: 4
   spinSpeed: 180
   motionMagnitude: 0.2
---- !u!114 &8110254553058726067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3888645983238602598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2187b9cf350611d4c958d303294412f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravity: -12
---- !u!136 &5482786408854562795
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3888645983238602598}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-5869099860928406974
 Rigidbody:
   m_ObjectHideFlags: 0

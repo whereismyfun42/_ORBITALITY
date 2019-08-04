@@ -42,7 +42,7 @@ public class ORBIT : MonoBehaviour
             //sp.AddComponent<RocketAttract>();
             sp.AddComponent<Planet>();
             sp.AddComponent<Rotate>();
-            sp.GetComponent<Rotate>().speed = 50f;
+            sp.GetComponent<Rotate>().speed = 150f;
             //sp.AddComponent<Magnet>();
             sp.AddComponent<DestroyRocket>();
             /*sp.AddComponent<SphereCollider>();

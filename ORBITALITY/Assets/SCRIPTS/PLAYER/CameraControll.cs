@@ -14,8 +14,10 @@ public class CameraControll : MonoBehaviour
     public float maxY = 100f;
     private float nextTimeToFire = 0f;
     public bool Pause = false;
+    public GameObject PauseExit;
     public Rigidbody rb;
     public GameObject cursor;
+    public AudioClip RocketSFX;
     //public LayerMask layer;
     private Camera cam;
     //public float MainPower = 10.0f;
@@ -63,22 +65,23 @@ public class CameraControll : MonoBehaviour
             cursor.transform.position = hit.point + Vector3.up * 0.1f;
         }*/
 
-        if (ground.Raycast(camRay, out rayLength))
+        if (ground.Raycast(camRay, out rayLength) && Pause == false)
         {
             Vector3 lookAt = camRay.GetPoint(rayLength);
             cursor.SetActive(true);
             cursor.transform.position = camRay.GetPoint(rayLength) + Vector3.up * 0.1f;
-            Player.transform.LookAt(new Vector3(lookAt.x, Player.transform.position.y, lookAt.z));
+            //Player.transform.LookAt(new Vector3(lookAt.x, Player.transform.position.y, lookAt.z));
 
-            Vector3 Vo = CalculateVelocity(camRay.GetPoint(rayLength), BulletSpawn.position, 1f);
+            Vector3 Vo = CalculateVelocity(camRay.GetPoint(rayLength), BulletSpawn.position, 1.5f);
 
             BulletSpawn.rotation = Quaternion.LookRotation(Vo);
 
-            if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire)
+            if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && Pause == false)
             {
                 nextTimeToFire = Time.time + 1f / MainFireRate;
                 Rigidbody obj = Instantiate(rb, BulletSpawn.position, BulletSpawn.rotation);
                 obj.velocity = Vo;
+                obj.GetComponent<AudioSource>().PlayOneShot(RocketSFX);
             }
            
 
@@ -88,23 +91,23 @@ public class CameraControll : MonoBehaviour
             cursor.SetActive(true);
         }
 
-        if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - Border)
+        if ((Input.GetKey("w") || Input.mousePosition.y >= Screen.height - Border) && Pause == false)
         {
             CameraPosition.z += CameraSpeed * Time.deltaTime;
         }
-        if (Input.GetKey("s") || Input.mousePosition.y >= Screen.height - Border)
+        if ((Input.GetKey("s") || Input.mousePosition.y >= Screen.height - Border) && Pause == false)
         {
             CameraPosition.z -= CameraSpeed * Time.deltaTime;
         }
-        if (Input.GetKey("d") || Input.mousePosition.y >= Screen.height - Border)
+        if ((Input.GetKey("d") || Input.mousePosition.y >= Screen.height - Border) && Pause == false)
         {
             CameraPosition.x += CameraSpeed * Time.deltaTime;
         }
-        if (Input.GetKey("a") || Input.mousePosition.y >= Screen.height - Border)
+        if ((Input.GetKey("a") || Input.mousePosition.y >= Screen.height - Border) && Pause == false)
         {
             CameraPosition.x -= CameraSpeed * Time.deltaTime;
         }
-        if (Input.GetKey("f"))
+        if (Input.GetKey("f") && Pause == false)
         {
             CameraPosition.x = CameraCentrePoint.position.x;
             CameraPosition.y = CameraCentrePoint.position.y;
@@ -126,16 +129,29 @@ public class CameraControll : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause = !Pause;
+            Pause = !Pause;            
         }
 
         if (Pause)
         {
             Time.timeScale = 0;
+            PauseExit.SetActive(true);
+            if (Input.GetKey(KeyCode.Y))
+            {
+                Application.Quit();
+            }
+
+            if (Input.GetKey(KeyCode.N))
+            {
+                Pause = !Pause;
+                Time.timeScale = 1;
+                PauseExit.SetActive(false);
+            }
         }
         else
         {
             Time.timeScale = 1;
+            PauseExit.SetActive(false);
         }
 
        
